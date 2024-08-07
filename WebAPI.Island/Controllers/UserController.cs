@@ -18,7 +18,9 @@ namespace WebAPI.Island.Controllers
         }
 
         [HttpPost]
-        [Route("register_user")]
+        [Route("register")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UserViewModel))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] UserViewModel userToRegister)
         {
             UserViewModel userCreated = new();
@@ -42,7 +44,10 @@ namespace WebAPI.Island.Controllers
         }
 
         [HttpPost]
-        [Route("login_user")]
+        [Route("login")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginSuccessViewModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Login([FromBody] LoginViewModel loginUser)
         {
             LoginSuccessViewModel userLoginSuccess = new();
@@ -64,8 +69,10 @@ namespace WebAPI.Island.Controllers
         }
 
         [HttpPut]
-        [Route("edit_user")]
+        [Route("edit")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update([FromBody] UserViewModel userToUpdate)
         {
             try
@@ -82,8 +89,10 @@ namespace WebAPI.Island.Controllers
         }
 
         [HttpDelete]
-        [Route("{userId}/delete_user")]
+        [Route("{userId}/delete")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Delete(int userId)
         {
             try
