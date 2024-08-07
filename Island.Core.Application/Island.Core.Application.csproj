@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Island.Core.Domain\Island.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Container\" />
+  </ItemGroup>
+
 </Project>
